@@ -1,0 +1,32 @@
+Symbols: R,L1,L2,L3,P1,P2,P3
+Initial conditions: Robot(R), At(R,P2), Polygon(P1), Polygon(P2), Polygon(P3), Lanelet(L1), Lanelet(L2), Lanelet(L3), NotClean(P1), NotClean(P2), NotClean(P3)
+Goal conditions: At(R,P1), IsClean(P1), IsClean(P2), IsClean(P3)
+
+Actions:
+        PolygonToLaneletA(r)
+        Preconditions: At(r, P1)
+        Effects: At(r,L1), !At(r,P1)
+
+        PolygonToLaneletB(r)
+        Preconditions: At(r, P2)
+        Effects: At(r,L2), !At(r,P2)
+
+        PolygonToLaneletC(r)
+        Preconditions: At(r,P3)
+        Effects: At(r,L3), !At(r,P3)
+
+        LaneletToPolygonA(r)
+        Preconditions: At(r,L1)
+        Effects: At(r,P2), !At(r,L1)
+
+        LaneletToPolygonB(r)
+        Preconditions: At(r,L2)
+        Effects: At(r,P3), !At(r,L2)
+
+        LaneletToPolygonC(r)
+        Preconditions: At(r,L3)
+        Effects: At(r,P1), !At(r,L3)
+
+        Clean(r,x)
+        Preconditions: At(r,x), NotClean(x), Polygon(x)
+        Effects: At(r,x), IsClean(x), !NotClean(x)
